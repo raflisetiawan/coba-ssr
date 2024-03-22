@@ -1,11 +1,8 @@
 <template>
   <q-page class="row items-center justify-evenly">
-    <example-component
-      title="Example component"
-      active
-      :todos="todos"
-      :meta="meta"
-    ></example-component>
+    <example-component title="Example component" active :todos="todos" :meta="meta"></example-component>
+    <q-btn @click="setNilai" label="Set Nilai"></q-btn>
+    <q-btn @click="removeNilai" label="Hapus Nilai"></q-btn>
   </q-page>
 </template>
 
@@ -13,6 +10,14 @@
 import { Todo, Meta } from 'components/models';
 import ExampleComponent from 'components/ExampleComponent.vue';
 import { ref } from 'vue';
+import { qCookies } from 'src/boot/cookies';
+
+const setNilai = () => {
+  qCookies.set('nilai', '1');
+}
+const removeNilai = () => {
+  qCookies.remove('nilai');
+}
 
 const todos = ref<Todo[]>([
   {
