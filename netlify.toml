@@ -1,21 +1,18 @@
 [build]
-  # The 'base' specifies the project's root path, where 'npm i' and 'npm run build' will run.
   base = '.'
-
-  # The 'publish' directory is where we'll deploy static assets.
   publish = 'dist/ssr/client'
-
-  # The 'command' field is customizable for the build process.
   command = 'quasar build -m ssr'
 
 [functions]
-  # Using Express as an external Node.js module.
   external_node_modules = ["express"]
-
-  # We cannot directly use 'dist/ssr/index.js'  for the following reasons
   directory = 'dist/ssr/netlify/functions'
 
-# Redirects all incoming requests to serverless functions.
+[[redirects]]
+  force = true
+  from = "/assets/*"
+  status = 200
+  to = "/assets/:splat"
+
 [[redirects]]
   force = true
   from = "/*"
