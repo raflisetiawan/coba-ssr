@@ -10,13 +10,14 @@
 import { Todo, Meta } from 'components/models';
 import ExampleComponent from 'components/ExampleComponent.vue';
 import { ref } from 'vue';
-import { qCookies } from 'src/boot/cookies';
+// import { qCookies } from 'src/boot/cookies';
+import { Cookies } from 'quasar';
 
 const setNilai = () => {
-  qCookies.set('nilai', '1');
+  Cookies.set('nilai', '1');
 }
 const removeNilai = () => {
-  qCookies.remove('nilai');
+  Cookies.remove('nilai');
 }
 
 const todos = ref<Todo[]>([
