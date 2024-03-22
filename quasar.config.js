@@ -54,8 +54,9 @@ module.exports = configure(function (/* ctx */) {
         browser: ['es2019', 'edge88', 'firefox78', 'chrome87', 'safari13.1'],
         node: 'node16',
       },
+
       afterBuild({ quasarConf }) {
-        // Create the Netlify function
+        // 为 netlify 创建 function
         const distDir = path.resolve(__dirname, quasarConf.build.distDir);
         const netifyFuncDir = path.join(distDir, '/netlify/functions');
         fs.mkdirSync(netifyFuncDir, {
@@ -67,13 +68,12 @@ module.exports = configure(function (/* ctx */) {
           encoding: 'utf-8',
         });
 
-        // Create the static resource directory for Netlify
+        // 为 netlify 创建静态资源目录
         const clientDir = path.join(distDir, 'client');
         let str =
           '# Redirects from what the browser requests to what we serve\n';
         const files = fs.readdirSync(clientDir);
         for (const file of files) {
-          // I'm using the lazy method here. You should use the fs. stat method to determine if the file is a directory
           if (file.includes('.')) {
             str += `/${file}                        /${file}\n`;
           } else {
